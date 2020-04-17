@@ -115,10 +115,10 @@ class GenerateSimilarities:
 
        
 if __name__ == "__main__":
-    sys.stdout = open('/iplant/home/josephacevedo/test_data/output.txt', 'w')
+    sys.stdout = open('results.out', 'w')
 
-    file_loc = "/iplant/home/josephacevedo/test_data/54b43271e138239d868510dc.txt"
-    folder_loc = "/iplant/home/josephacevedo/test_data/"
+    file_loc = sys.argv[0]
+    folder_loc = sys.argv[1]
 
     gs = GenerateSimilarities(folder_loc, file_loc)
     gs.run_similarity_finder()
