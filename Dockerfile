@@ -8,4 +8,6 @@ RUN pip install pandas
 
 RUN pip install numpy
 
+RUN pip install spacy
+
 CMD [ "python", "./compareSimilarities.py" ]
