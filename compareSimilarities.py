@@ -1,6 +1,7 @@
 import spacy
 import glob
 import json
+import sys
 import os
 
 import seaborn as sn
@@ -21,11 +22,16 @@ from gensim.models import Word2Vec
 
 class GenerateSimilarities:
     ### Constants ###
-    FILES_LOC = "..\\spaCyModels\\text\\"
+    FILES_LOC = ""
     FILES_TYPE = "*.txt"
     BIBJSON = "..\\spaCyModels\\text\\bibjson.json"
     MODEL = "en_trf_bertbaseuncased_lg"
     TOKEN_FILE = "tokenizd_files_dictionary.p"
+    FILE_TO_READ = ""
+
+    def __init__(self, folder_loc, file_loc):
+        self.FILES_LOC = folder_loc
+        self.FILE_TO_READ = file_loc
 
 
     def parse_bibjson(self):
@@ -73,13 +79,13 @@ class GenerateSimilarities:
                     print()
 
         # Save the tokens to a file so we don't have to parse them again            
-        pickle.dump(files_parsed, open(self.TOKEN_FILE, "wb"))
+        pickle.dump(files_parsed, open(self.FILES_LOC + self.TOKEN_FILE, "wb"))
 
         return files_parsed        
 
     def get_model(self, nlp_model):
-        if os.path.isfile(self.TOKEN_FILE):
-            return pickle.load( open(self.TOKEN_FILE, "rb"))
+        if os.path.isfile(self.FILES_LOC + self.TOKEN_FILE):
+            return pickle.load( open(self.FILES_LOC + self.TOKEN_FILE, "rb"))
         else:
             return self.tokenize_and_vectorize_files(nlp_model)
 
@@ -114,14 +120,17 @@ class GenerateSimilarities:
 
         print("Token dictionary loaded... ")
         
-        while True:
-            filename = input("Please enter a filename to compare (q to quit): ")
-            if filename == "q" or filename == "Q":
-                return
-            self.find_most_similar(filename, nlp, token_dict)
+        filename = self.FILE_TO_READ
+        self.find_most_similar(filename, nlp, token_dict)
         
 
        
 if __name__ == "__main__":
-    gs = GenerateSimilarities()
+    sys.stdout = open('output.txt', 'w')
+    args = sys.argv
+
+    file_loc = args[0]
+    folder_loc = args[1]
+
+    gs = GenerateSimilarities(folder_loc, file_loc)
     gs.run_similarity_finder()
