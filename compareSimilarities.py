@@ -1,24 +1,13 @@
 import spacy
 import glob
-import json
 import sys
 import os
 
-import seaborn as sn
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.widgets import Slider
 import numpy as np
 
-import nltk
-nltk.download('punkt')
-from nltk.tokenize import sent_tokenize, word_tokenize 
-import warnings 
 import pickle
 
-warnings.filterwarnings(action = 'ignore') 
-import gensim 
-from gensim.models import Word2Vec
 
 class GenerateSimilarities:
     ### Constants ###
@@ -126,11 +115,10 @@ class GenerateSimilarities:
 
        
 if __name__ == "__main__":
-    sys.stdout = open('output.txt', 'w')
-    args = sys.argv
+    sys.stdout = open('/iplant/home/josephacevedo/test_data/output.txt', 'w')
 
-    file_loc = args[0]
-    folder_loc = args[1]
+    file_loc = "/iplant/home/josephacevedo/test_data/54b43271e138239d868510dc.txt"
+    folder_loc = "/iplant/home/josephacevedo/test_data/"
 
     gs = GenerateSimilarities(folder_loc, file_loc)
     gs.run_similarity_finder()

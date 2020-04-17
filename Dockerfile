@@ -1,7 +1,11 @@
-FROM alpine:3.9
+FROM python:3
 
-RUN apk add --update py3-pip
+ADD compareSimilarities.py /
 
-COPY compareSimilarities.py /usr/src/app/
+RUN pip install nltk
 
-CMD python3 /usr/src/app/compareSimilarities.py
+RUN pip install pandas
+
+RUN pip install numpy
+
+CMD [ "python", "./compareSimilarities.py" ]
