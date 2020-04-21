@@ -2,7 +2,7 @@ FROM python:3
 
 RUN mkdir /work
 
-ADD compareSimilarities.py /
+ADD compareSimilarities.py /work
 
 RUN pip install nltk
 
