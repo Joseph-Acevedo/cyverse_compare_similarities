@@ -24,7 +24,7 @@ class GenerateSimilarities:
 
 
     def parse_bibjson(self):
-        with open(self.FILES_LOC + elf.BIBJSON, 'r', encoding="utf-8") as f:
+        with open(self.FILES_LOC + self.BIBJSON, 'r', encoding="utf-8") as f:
             data = json.load(f)
         return data
 
