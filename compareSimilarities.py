@@ -13,7 +13,7 @@ class GenerateSimilarities:
     ### Constants ###
     FILES_LOC = ""
     FILES_TYPE = "*.txt"
-    BIBJSON = "..\\spaCyModels\\text\\bibjson.json"
+    BIBJSON = "bibjson.json"
     MODEL = "en_trf_bertbaseuncased_lg"
     TOKEN_FILE = "tokenizd_files_dictionary.p"
     FILE_TO_READ = ""
@@ -24,7 +24,7 @@ class GenerateSimilarities:
 
 
     def parse_bibjson(self):
-        with open(self.BIBJSON, 'r', encoding="utf-8") as f:
+        with open(self.FILES_LOC + elf.BIBJSON, 'r', encoding="utf-8") as f:
             data = json.load(f)
         return data
 
