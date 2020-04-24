@@ -13,5 +13,3 @@ RUN pip install numpy
 RUN pip install spacy
 
 RUN python -m spacy download en_trf_bertbaseuncased_lg
-
-CMD [ "python", "work/compareSimilarities.py" ]
