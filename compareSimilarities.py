@@ -117,8 +117,9 @@ class GenerateSimilarities:
 if __name__ == "__main__":
     sys.stdout = open('results.out', 'w')
 
-    file_loc = sys.argv[0]
-    folder_loc = sys.argv[1]
+    # arg[0] is the name of the script
+    file_loc = sys.argv[1]
+    folder_loc = sys.argv[2]
 
     gs = GenerateSimilarities(folder_loc, file_loc)
     gs.run_similarity_finder()
